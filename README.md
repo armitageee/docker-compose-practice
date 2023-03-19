@@ -7,11 +7,18 @@ let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 
 ### Для запуска приложения
 
-1) Создать docker network : <br> ``` docker network create db-network ```
+1) Создать docker network : <br> 
+``` 
+docker network create db-network 
+```
 2) Установить и запустить образ mongodb: <br>
-   ``` docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net db-network mongo ```
+``` 
+docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net db-network mongo 
+```
 3) Запустить mongo express : <br>
-   ``` docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=password --net db-network --name mongo-express -e ME_CONFIG_MONGODB_SERVER=mongodb mongo-express ```
+``` 
+docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=password --net db-network --name mongo-express -e ME_CONFIG_MONGODB_SERVER=mongodb mongo-express 
+```
 4) Не обязательно создавать сеть с отдельным именем, достаточно просто указать флаг --net 
 5) Откройте mongo-express по адресу http://localhost:8081 и создайте базу данных user-account и коллекцию users внутри неё
 6) Запустите приложение из рабочей директории app : <br>
